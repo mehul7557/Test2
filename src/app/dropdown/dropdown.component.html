@@ -1,0 +1,36 @@
+<form [formGroup]="drpdata" class="form-group col-md-4">
+  <div class="dropdown">
+    <label style="background-color: rgb(2, 2, 2);width: 50%; display: flex; color: aliceblue;">Territory</label><br>
+    <select class="form-group" style="width: 50%;" formControlName="location" (change)="getLocationId($event.target)"
+      name="location" id="location">
+      <option [value]=""></option>
+      <option *ngFor="let data of new" value={{data.locationId}}>{{data.locationName}}</option>
+    </select>
+  </div><br>
+  <div>
+    <label style="background-color: rgb(2, 2, 2);width: 50%; display: flex; color: aliceblue;">Campus</label><br>
+    <select class="form-group " style="width: 50%;" formControlName="territory" (change)="getCampus($event.target)"
+      name="location" id="location">
+      <option [value]=""></option>
+      <option *ngFor="let data of newData" value={{data.campusId}}>{{data.name}}</option>
+    </select>
+  </div><br>
+  <div *ngIf="drpdata.value.territory">
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">UOM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of campusdata">
+          <td>{{data.description |lowercase}}</td>
+          <td>{{data.value}}</td>
+          <td>{{data.uom}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
